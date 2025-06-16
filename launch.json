@@ -1,0 +1,13 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "java",
+      "name": "Launch Main",
+      "request": "launch",
+      "mainClass": "StudentLibrary", // Replace with your main class name
+      "projectName": "",             // Leave empty if not using Maven/Gradle
+      "console": "internalConsole"
+    }
+  ]
+}

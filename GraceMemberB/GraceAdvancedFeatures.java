@@ -1,13 +1,12 @@
 package GraceMemberB;
 
-import javax.swing.*;
-import javax.sound.sampled.*;
 import java.io.*;
 import java.util.*;
-import java.util.Arrays;
-import java.util.Comparator;
+import javax.sound.sampled.*;
+import javax.swing.*;
 
-public class AdvancedFeatures {
+public class GraceAdvancedFeatures {
+
 
     // --- MEMBER B ADVANCED FEATURES ---
 
@@ -69,17 +68,17 @@ public class AdvancedFeatures {
 
     // Plays a sound using a .wav file
     public static void playSound(String filename) {
-        try {
-            File soundFile = new File(filename);
-            AudioInputStream audioIn = AudioSystem.getAudioInputStream(soundFile);
-            Clip clip = AudioSystem.getClip();
-            clip.open(audioIn);
-            clip.start();
-        } catch (Exception e) {
-            System.out.println("Sound error: " + e.getMessage());
-        }
+    try {
+        // Load the sound file from the GraceMemberB package using relative path
+        File soundFile = new File("GraceMemberB/" + filename);
+        AudioInputStream audioIn = AudioSystem.getAudioInputStream(soundFile);
+        Clip clip = AudioSystem.getClip();
+        clip.open(audioIn);
+        clip.start();
+    } catch (Exception e) {
+        System.out.println("Sound error: " + e.getMessage());
     }
-
+}
     // Allows editing of book info based on title match
     public static void editBook(Book[] books, int count) {
         String title = JOptionPane.showInputDialog("Enter the title of the book to edit:");

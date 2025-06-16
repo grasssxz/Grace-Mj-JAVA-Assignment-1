@@ -18,6 +18,7 @@ public class Book {
         this.available = available;
     }
 
+
     // Getter methods to access private fields
     public String getTitle() {
         return title;

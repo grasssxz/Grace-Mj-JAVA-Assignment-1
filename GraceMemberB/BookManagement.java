@@ -6,8 +6,8 @@ import javax.swing.*;
 
 public class BookManagement extends Book {
     // Array to store Book objects
-    private Book[] books;
-    private int count;
+    public Book[] books;
+    public int count;
 
     public BookManagement() {
         super("", "", "", 0.0, "", true);
@@ -15,6 +15,13 @@ public class BookManagement extends Book {
         count = 0;
         initBooks(); // Load 3 books at startup
     }
+public Book[] getBooks() {
+    return books;
+}
+// Getter method for count
+public int getCount() {
+    return count;
+}
 
     // Pre-load 3 books for Option 1 display
   private void initBooks() {

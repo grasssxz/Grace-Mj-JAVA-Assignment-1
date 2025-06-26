@@ -128,90 +128,90 @@ public class GraceAdvancedFeatures {
         }
         JOptionPane.showMessageDialog(null, sb.toString());
     }
+
+    // --- MEMBER A + B COMBINED FEATURES ---
+
+    // Links a student to a book they borrowed and marks the book unavailable
+    public static void linkStudentToBook(Map<String, String> loanLog, Book[] books, int count) {
+        String studentName = JOptionPane.showInputDialog("Enter student name:");
+        String bookTitle = JOptionPane.showInputDialog("Enter book title to borrow:");
+        for (int i = 0; i < count; i++) {
+            if (books[i].getTitle().equalsIgnoreCase(bookTitle) && books[i].isAvailable()) {
+                books[i].setAvailable(false);
+                loanLog.put(studentName, bookTitle);
+                JOptionPane.showMessageDialog(null, studentName + " has borrowed '" + bookTitle + "'.");
+                return;
+            }
+        }
+        JOptionPane.showMessageDialog(null, "Book is either not found or not available.");
+    }
+
+    // Displays all records of borrowed books
+    public static void displayLoanLog(Map<String, String> loanLog) {
+        if (loanLog.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "No books are currently loaned out.");
+            return;
+        }
+        StringBuilder sb = new StringBuilder("Borrowed Books Log:\n");
+        for (String student : loanLog.keySet()) {
+            sb.append(student).append(" borrowed ").append(loanLog.get(student)).append("\n");
+        }
+        JOptionPane.showMessageDialog(null, sb.toString());
+    }
+
+    // Allows a student to return their borrowed book
+    public static void returnBook(Map<String, String> loanLog, Book[] books, int count) {
+        String studentName = JOptionPane.showInputDialog("Enter student name to return book:");
+        if (!loanLog.containsKey(studentName)) {
+            JOptionPane.showMessageDialog(null, "This student has not borrowed any book.");
+            return;
+        }
+        String bookTitle = loanLog.get(studentName);
+        for (int i = 0; i < count; i++) {
+            if (books[i].getTitle().equalsIgnoreCase(bookTitle)) {
+                books[i].setAvailable(true);
+                loanLog.remove(studentName);
+                JOptionPane.showMessageDialog(null, studentName + " has returned '" + bookTitle + "'.");
+                return;
+            }
+        }
+        JOptionPane.showMessageDialog(null, "Book record mismatch.");
+    }
+
+    // Verifies if a specific student borrowed a specific book
+    public static void verifyStudentBookLoan(Map<String, String> loanLog) {
+        String studentName = JOptionPane.showInputDialog("Enter student name:");
+        String bookTitle = JOptionPane.showInputDialog("Enter book title to verify:");
+
+        if (loanLog.containsKey(studentName)) {
+            String borrowedBook = loanLog.get(studentName);
+            if (borrowedBook.equalsIgnoreCase(bookTitle)) {
+                JOptionPane.showMessageDialog(null, "✅ Yes, " + studentName + " has borrowed '" + bookTitle + "'.");
+            } else {
+                JOptionPane.showMessageDialog(null, "❌ No, " + studentName + " did not borrow '" + bookTitle + "'.");
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, studentName + " has not borrowed any book.");
+        }
+    }
+
+    // Verifies if the student borrowed any book at all
+    public static void verifyAnyBooksBorrowed(Map<String, String> loanLog) {
+        String studentName = JOptionPane.showInputDialog("Enter student name to check loans:");
+        if (loanLog.containsKey(studentName)) {
+            String book = loanLog.get(studentName);
+            JOptionPane.showMessageDialog(null, studentName + " has borrowed '" + book + "'.");
+        } else {
+            JOptionPane.showMessageDialog(null, studentName + " has not borrowed any books.");
+        }
+    }
+
+    // Shows which book the student has borrowed
+    public static void listBorrowedBooksByStudent(Map<String, String> loanLog, String studentName) {
+        if (loanLog.containsKey(studentName)) {
+            JOptionPane.showMessageDialog(null, studentName + " has borrowed: " + loanLog.get(studentName));
+        } else {
+            JOptionPane.showMessageDialog(null, studentName + " has not borrowed any books.");
+        }
+    }
 }
-//     // --- MEMBER A + B COMBINED FEATURES ---
-
-//     // Links a student to a book they borrowed and marks the book unavailable
-//     public static void linkStudentToBook(Map<String, String> loanLog, Book[] books, int count) {
-//         String studentName = JOptionPane.showInputDialog("Enter student name:");
-//         String bookTitle = JOptionPane.showInputDialog("Enter book title to borrow:");
-//         for (int i = 0; i < count; i++) {
-//             if (books[i].getTitle().equalsIgnoreCase(bookTitle) && books[i].isAvailable()) {
-//                 books[i].setAvailable(false);
-//                 loanLog.put(studentName, bookTitle);
-//                 JOptionPane.showMessageDialog(null, studentName + " has borrowed '" + bookTitle + "'.");
-//                 return;
-//             }
-//         }
-//         JOptionPane.showMessageDialog(null, "Book is either not found or not available.");
-//     }
-
-//     // Displays all records of borrowed books
-//     public static void displayLoanLog(Map<String, String> loanLog) {
-//         if (loanLog.isEmpty()) {
-//             JOptionPane.showMessageDialog(null, "No books are currently loaned out.");
-//             return;
-//         }
-//         StringBuilder sb = new StringBuilder("Borrowed Books Log:\n");
-//         for (String student : loanLog.keySet()) {
-//             sb.append(student).append(" borrowed ").append(loanLog.get(student)).append("\n");
-//         }
-//         JOptionPane.showMessageDialog(null, sb.toString());
-//     }
-
-//     // Allows a student to return their borrowed book
-//     public static void returnBook(Map<String, String> loanLog, Book[] books, int count) {
-//         String studentName = JOptionPane.showInputDialog("Enter student name to return book:");
-//         if (!loanLog.containsKey(studentName)) {
-//             JOptionPane.showMessageDialog(null, "This student has not borrowed any book.");
-//             return;
-//         }
-//         String bookTitle = loanLog.get(studentName);
-//         for (int i = 0; i < count; i++) {
-//             if (books[i].getTitle().equalsIgnoreCase(bookTitle)) {
-//                 books[i].setAvailable(true);
-//                 loanLog.remove(studentName);
-//                 JOptionPane.showMessageDialog(null, studentName + " has returned '" + bookTitle + "'.");
-//                 return;
-//             }
-//         }
-//         JOptionPane.showMessageDialog(null, "Book record mismatch.");
-//     }
-
-//     // Verifies if a specific student borrowed a specific book
-//     public static void verifyStudentBookLoan(Map<String, String> loanLog) {
-//         String studentName = JOptionPane.showInputDialog("Enter student name:");
-//         String bookTitle = JOptionPane.showInputDialog("Enter book title to verify:");
-
-//         if (loanLog.containsKey(studentName)) {
-//             String borrowedBook = loanLog.get(studentName);
-//             if (borrowedBook.equalsIgnoreCase(bookTitle)) {
-//                 JOptionPane.showMessageDialog(null, "✅ Yes, " + studentName + " has borrowed '" + bookTitle + "'.");
-//             } else {
-//                 JOptionPane.showMessageDialog(null, "❌ No, " + studentName + " did not borrow '" + bookTitle + "'.");
-//             }
-//         } else {
-//             JOptionPane.showMessageDialog(null, studentName + " has not borrowed any book.");
-//         }
-//     }
-
-//     // Verifies if the student borrowed any book at all
-//     public static void verifyAnyBooksBorrowed(Map<String, String> loanLog) {
-//         String studentName = JOptionPane.showInputDialog("Enter student name to check loans:");
-//         if (loanLog.containsKey(studentName)) {
-//             String book = loanLog.get(studentName);
-//             JOptionPane.showMessageDialog(null, studentName + " has borrowed '" + book + "'.");
-//         } else {
-//             JOptionPane.showMessageDialog(null, studentName + " has not borrowed any books.");
-//         }
-//     }
-
-//     // Shows which book the student has borrowed
-//     public static void listBorrowedBooksByStudent(Map<String, String> loanLog, String studentName) {
-//         if (loanLog.containsKey(studentName)) {
-//             JOptionPane.showMessageDialog(null, studentName + " has borrowed: " + loanLog.get(studentName));
-//         } else {
-//             JOptionPane.showMessageDialog(null, studentName + " has not borrowed any books.");
-//         }
-//     }
-// }

@@ -13,10 +13,15 @@ public class MjStudentManagement {
     }
 
     private void initStudents() {
-        students[count++] = new Student("Grace", "p2429077", new String[]{"ISBN001", "Elon Musk"});
-        students[count++] = new Student("MingJuan", "p2429085", new String[]{"ISBN002", "Clean Code"});
-        students[count++] = new Student("Weexuan", "p2429067", new String[]{"ISBN003", "Java Basics"});
-    }
+    students[count++] = new Student("Grace", "p2429077", new String[]{"ISBN001", "Elon Musk"});
+    students[count++] = new Student("MingJuan", "p2429085", new String[]{"ISBN002", "Clean Code"});
+    students[count++] = new Student("Weexuan", "p2429067", new String[]{"ISBN003", "Java Basics"});
+    students[count++] = new Student("Junkai", "p2429044", new String[]{"ISBN004", "Artificial Intelligence"});
+    students[count++] = new Student("Manfred", "p2429033", new String[]{"ISBN005", "Design Patterns"});
+    students[count++] = new Student("Grace T", "p2429078", new String[]{"ISBN006", "Data Structures"});
+    students[count++] = new Student("Zhi Wei", "p2429090", new String[]{"ISBN007", "Python Programming"});
+    students[count++] = new Student("Ethan", "p2429060", new String[]{"ISBN008", "Machine Learning"});
+}
 
     public void displayStudent() {
         if (count == 0) {
